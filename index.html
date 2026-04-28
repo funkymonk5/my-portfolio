@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenny Khalid | IT Operations Support Specialist | Melbourne</title>
+    <meta name="description" content="Portfolio of Kenny Khalid, an IT Support Specialist with 5+ years experience in Azure, M365, and ITIL-aligned service desk operations.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .project-detail { display: none; }
+        .project-detail.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .bg-slate-soft { background-color: #f8fafc; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 font-sans leading-relaxed">
+
+    <header class="py-20 px-6 bg-slate-soft border-b border-slate-200">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-6xl font-black text-slate-900 tracking-tighter mb-4 uppercase">
+                Kenny <span class="text-slate-500">Khalid</span>
+            </h1>
+            <p class="text-sm font-bold text-slate-500 tracking-[0.4em] uppercase mb-8">
+                IT Support Analyst · M365 & Cloud Engineer
+            </p>
+            <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
+                B.S. Computer System Engineering with specialized expertise in Azure Infrastructure, Intune MDM, and ITIL-aligned service management. Based in Melbourne.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="Kenny_K_CV.pdf" target="_blank" class="bg-slate-900 text-white px-8 py-3 rounded-sm font-bold text-xs tracking-widest hover:bg-slate-700 transition">DOWNLOAD CV</a>
+                <a href="#contact" class="border border-slate-300 text-slate-900 px-8 py-3 rounded-sm font-bold text-xs tracking-widest hover:bg-slate-50 transition">CONTACT</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="max-w-4xl mx-auto px-6 py-20" id="projects">
+        <h2 class="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-12 border-b pb-2">Technical Labs & Projects</h2>
+        
+        <div class="space-y-4">
+            <div class="border border-slate-200 rounded-sm overflow-hidden bg-white hover:border-slate-400 transition cursor-pointer" onclick="toggle('intune')">
+                <div class="p-6 flex justify-between items-center">
+                    <span class="font-bold text-slate-800 uppercase text-sm tracking-wider">01. Intune & Autopilot Deployment</span>
+                    <i class="fas fa-plus text-slate-400" id="icon-intune"></i>
+                </div>
+                <div id="intune" class="project-detail p-6 pt-0 bg-slate-50">
+                    <img src="https://via.placeholder.com/800x400?text=Intune+Dashboard+Screenshot" alt="Intune Lab" class="w-full h-auto mb-4 border">
+                    <p class="text-sm text-slate-600">Provisioned Windows 11 endpoints via my M365 E5 tenant. Configured security baselines, BitLocker enforcement, and automated software packaging.</p>
+                </div>
+            </div>
+
+            <div class="border border-slate-200 rounded-sm overflow-hidden bg-white hover:border-slate-400 transition cursor-pointer" onclick="toggle('azure')">
+                <div class="p-6 flex justify-between items-center">
+                    <span class="font-bold text-slate-800 uppercase text-sm tracking-wider">02. Azure Infrastructure & Entra ID</span>
+                    <i class="fas fa-plus text-slate-400" id="icon-azure"></i>
+                </div>
+                <div id="azure" class="project-detail p-6 pt-0 bg-slate-50">
+                    <img src="https://via.placeholder.com/800x400?text=Azure+Portal+Screenshot" alt="Azure Lab" class="w-full h-auto mb-4 border">
+                    <p class="text-sm text-slate-600">Implemented Entra ID Conditional Access policies for MFA. Managed VNETs, NSGs, and automated VM backups on my professional domain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-slate-900 text-white py-20 px-6">
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="text-xs font-black text-slate-500 uppercase tracking-widest mb-6">Core Competencies</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><span class="text-slate-400">#</span> Microsoft 365 (Exchange, Teams, Intune)</li>
+                    <li><span class="text-slate-400">#</span> Azure Administration & Identity (Entra)</li>
+                    <li><span class="text-slate-400">#</span> ITIL Foundation (Incident & SLA Management)</li>
+                    <li><span class="text-slate-400">#</span> Jira Service Management (JSM)</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xs font-black text-slate-500 uppercase tracking-widest mb-6">Certifications</h3>
+                <ul class="space-y-2 text-sm font-bold">
+                    <li>MS-900: M365 Fundamentals [Certified]</li>
+                    <li>AZ-900: Azure Fundamentals [Certified]</li>
+                    <li>ITIL 4 Foundation [Certified]</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 px-6 text-center" id="contact">
+        <h2 class="text-2xl font-bold mb-4">Let's Connect</h2>
+       
+        <p class="font-bold text-slate-900">contact@kennyk.online</p>
+        <div class="mt-8 flex justify-center gap-6 text-2xl text-slate-400">
+            <a href="https://linkedin.com/in/kenny-khalid" target="_blank" class="hover:text-slate-900"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:contact@kennyk.online" class="hover:text-slate-900"><i class="fas fa-envelope"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        function toggle(id) {
+            const detail = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            detail.classList.toggle('active');
+            icon.classList.toggle('fa-plus');
+            icon.classList.toggle('fa-minus');
+        }
+    </script>
+</body>
+</html>
