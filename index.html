@@ -693,6 +693,28 @@
 
 <script>
 const projectData={p1:{id:'p1',cat:'M365 · Exchange Online',title:'SPF / DKIM / DMARC Email Security Setup',photos:[]}};
+  /////////////////////////////////////////
+  p2: {
+    id: 'p2',
+    cat: 'M365 · Microsoft Intune',
+    title: 'Enterprise Endpoint Security & Compliance Hardening',
+    photos: [
+      { 
+        src: 'Intune Login.jpg', 
+        desc: 'Executing a cloud-native Entra ID Join for a Windows 11 Enterprise endpoint.' 
+      },
+      { 
+        src: 'intine policies updated.jpg', 
+        desc: 'Management of Configuration Profiles using the Settings Catalog to enforce environmental variables.' 
+      },
+      { 
+        src: 'Policy Intune Disable Control Panel.jpg', 
+        desc: 'Security hardening for the Finance group, specifically enforcing the Disable Control Panel restriction.' 
+      }
+    ]
+  }
+};
+  ///////////////////////////////////
 let currentUploadId=null,pendingFiles=[],lbPhotos=[],lbIndex=0;
 
 function switchTab(id,btn){
