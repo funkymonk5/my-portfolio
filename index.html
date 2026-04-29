@@ -1,107 +1,815 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kenny Khalid | IT Operations Support Specialist | Melbourne</title>
-    <meta name="description" content="Portfolio of Kenny Khalid, an IT Support Specialist with 5+ years experience in Azure, M365, and ITIL-aligned service desk operations.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .project-detail { display: none; }
-        .project-detail.active { display: block; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .bg-slate-soft { background-color: #f8fafc; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenny Khalid | IT Support Analyst | Melbourne</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f8f9fb;
+    --card: #ffffff;
+    --border: #e2e6ed;
+    --border-hover: #c8d0dc;
+    --accent1: #0078d4;
+    --accent2: #5c2d91;
+    --accent3: #107c10;
+    --accent4: #d83b01;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+    --light: #f3f4f6;
+    --nav-bg: rgba(255,255,255,0.92);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 56px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.25rem;
+    color: var(--text); letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--accent1); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent1); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 130px 56px 80px;
+    position: relative; overflow: hidden;
+    background: var(--bg);
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 800px 500px at 75% 55%, rgba(0,120,212,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 400px at 15% 75%, rgba(92,45,145,0.05) 0%, transparent 70%);
+  }
+  .grid-overlay {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 760px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,120,212,0.08);
+    border: 1px solid rgba(0,120,212,0.2);
+    border-radius: 100px; padding: 6px 16px;
+    font-size: 0.8rem; color: var(--accent1); font-weight: 600;
+    margin-bottom: 28px; letter-spacing: 0.3px;
+  }
+  .hero-badge::before {
+    content: ''; width: 7px; height: 7px;
+    background: var(--accent3); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.7); }
+  }
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800; line-height: 1.05;
+    color: var(--text); letter-spacing: -2px; margin-bottom: 20px;
+  }
+  .hero-name .highlight { color: var(--accent1); }
+  .hero-titles { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+  .title-pill {
+    background: var(--light); border: 1px solid var(--border);
+    border-radius: 6px; padding: 7px 16px;
+    font-size: 0.85rem; color: var(--text); font-weight: 600;
+  }
+  .title-pill.primary {
+    background: rgba(0,120,212,0.08); border-color: rgba(0,120,212,0.25); color: var(--accent1);
+  }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent1); color: #fff; border: none;
+    padding: 13px 28px; border-radius: 8px; font-size: 0.9rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: #006abc; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,120,212,0.2); }
+
+  .btn-outline {
+    background: transparent; color: var(--text); border: 1px solid var(--border);
+    padding: 13px 28px; border-radius: 8px; font-size: 0.9rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-outline:hover { border-color: var(--accent1); color: var(--accent1); }
+
+  .hero-stack {
+    position: absolute; right: 72px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 14px; z-index: 1;
+  }
+  .stack-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 20px;
+    display: flex; align-items: center; gap: 12px; min-width: 210px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: all 0.2s;
+  }
+  .stack-card:hover { border-color: var(--accent1); box-shadow: 0 4px 20px rgba(0,120,212,0.1); }
+  .stack-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .stack-label { font-size: 0.75rem; color: var(--muted); font-weight: 500; }
+  .stack-name { font-size: 0.88rem; color: var(--text); font-weight: 700; }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--border); }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 56px; }
+  .section-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent1); margin-bottom: 10px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; color: var(--text); letter-spacing: -1px; margin-bottom: 14px; }
+  .section-sub { color: var(--muted); max-width: 540px; font-size: 0.97rem; margin-bottom: 52px; }
+
+  /* ── CERTS ── */
+  #certs { background: var(--surface); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .cert-item {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 22px; display: flex; align-items: center; gap: 16px;
+    transition: all 0.2s; box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+  .cert-item:hover { border-color: var(--accent1); box-shadow: 0 4px 16px rgba(0,120,212,0.08); }
+  .cert-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+  .cert-name { font-weight: 700; font-size: 0.88rem; color: var(--text); }
+  .cert-status { font-size: 0.75rem; margin-top: 3px; font-weight: 600; }
+  .cert-status.done { color: var(--accent3); }
+  .cert-status.progress { color: var(--accent4); }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px 18px; transition: all 0.2s; position: relative; overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .skill-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--color, var(--accent1)); transform: scaleX(0);
+    transition: transform 0.25s; transform-origin: left;
+  }
+  .skill-card:hover::after { transform: scaleX(1); }
+  .skill-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .skill-emoji { font-size: 1.4rem; margin-bottom: 10px; }
+  .skill-name { font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 4px; }
+  .skill-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── THIS SITE ── */
+  #stack { background: var(--surface); }
+  .stack-info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .stack-info-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 24px; box-shadow: 0 1px 6px rgba(0,0,0,0.04); transition: all 0.2s;
+  }
+  .stack-info-card:hover { border-color: var(--accent1); }
+  .stack-info-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .stack-info-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+  .stack-info-name { font-weight: 700; font-size: 0.95rem; color: var(--text); }
+  .stack-info-sub { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+  .stack-info-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--bg); }
+  .project-tabs { display: flex; gap: 10px; margin-bottom: 44px; flex-wrap: wrap; }
+  .tab-btn {
+    padding: 10px 22px; border-radius: 8px; font-size: 0.88rem; font-weight: 600;
+    cursor: pointer; border: 1px solid var(--border); background: var(--card);
+    color: var(--muted); transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .tab-btn.active { background: var(--accent1); border-color: var(--accent1); color: #fff; box-shadow: 0 4px 12px rgba(0,120,212,0.2); }
+  .tab-btn:not(.active):not(.coming):hover { border-color: var(--accent1); color: var(--accent1); }
+  .tab-btn.coming { opacity: 0.5; cursor: default; pointer-events: none; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 22px; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    overflow: hidden; transition: all 0.25s; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .project-card:hover { border-color: var(--accent1); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,120,212,0.1); }
+
+  .project-photos { position: relative; height: 200px; background: var(--surface); overflow: hidden; cursor: pointer; }
+  .project-photos-grid { display: grid; width: 100%; height: 100%; gap: 2px; }
+  .project-photos-grid.count-1 { grid-template-columns: 1fr; }
+  .project-photos-grid.count-2 { grid-template-columns: 1fr 1fr; }
+  .project-photos-grid.count-3 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+  .project-photos-grid.count-3 .photo-thumb:first-child { grid-row: span 2; }
+  .project-photos-grid.count-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+  .photo-thumb { position: relative; overflow: hidden; background: var(--light); }
+  .photo-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+  .photo-thumb:hover img { transform: scale(1.04); }
+  .photo-more-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; color: #fff; }
+  .no-photos-placeholder { height: 200px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .no-photos-placeholder .upload-icon { font-size: 1.8rem; opacity: 0.35; }
+  .no-photos-placeholder p { font-size: 0.8rem; color: var(--muted); }
+  .expand-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; background: rgba(0,120,212,0.07); }
+  .project-photos:hover .expand-overlay { opacity: 1; }
+  .expand-icon { background: rgba(255,255,255,0.92); border: 1px solid var(--border); color: var(--accent1); padding: 7px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+  .project-body { padding: 20px; }
+  .project-cat { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent1); margin-bottom: 7px; }
+  .project-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 14px; }
+  .project-actions { display: flex; gap: 10px; align-items: center; }
+
+  .btn-sm { font-size: 0.8rem; font-weight: 600; padding: 7px 14px; border-radius: 6px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; display: inline-flex; align-items: center; gap: 5px; }
+  .btn-upload { background: rgba(0,120,212,0.08); border: 1px solid rgba(0,120,212,0.2); color: var(--accent1); }
+  .btn-upload:hover { background: rgba(0,120,212,0.15); }
+  .btn-expand-sm { background: var(--light); border: 1px solid var(--border); color: var(--text); }
+  .btn-expand-sm:hover { border-color: var(--accent1); color: var(--accent1); }
+
+  .add-project-card {
+    background: var(--card); border: 2px dashed var(--border); border-radius: 14px;
+    min-height: 260px; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 10px; cursor: pointer; transition: all 0.2s;
+    color: var(--muted); font-size: 0.88rem; font-weight: 500;
+  }
+  .add-project-card:hover { border-color: var(--accent1); color: var(--accent1); }
+  .add-icon { font-size: 1.8rem; }
+
+  .coming-soon-panel { text-align: center; padding: 80px 40px; border: 1px dashed var(--border); border-radius: 14px; background: var(--surface); }
+  .coming-soon-panel .big-icon { font-size: 2.5rem; margin-bottom: 18px; }
+  .coming-soon-panel h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; color: var(--text); margin-bottom: 10px; }
+  .coming-soon-panel p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--surface); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .contact-info { display: flex; flex-direction: column; gap: 14px; }
+  .contact-item {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 22px; display: flex; align-items: center; gap: 16px;
+    text-decoration: none; transition: all 0.2s; box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+  .contact-item:hover { border-color: var(--accent1); transform: translateX(4px); box-shadow: 0 4px 16px rgba(0,120,212,0.08); }
+  .contact-item-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+  .contact-item-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  .contact-item-value { font-size: 0.95rem; color: var(--text); font-weight: 600; margin-top: 2px; }
+
+  .cv-link-card {
+    background: linear-gradient(135deg, rgba(0,120,212,0.06), rgba(92,45,145,0.06));
+    border: 1px solid rgba(0,120,212,0.2); border-radius: 12px;
+    padding: 20px 22px; display: flex; align-items: center; gap: 16px;
+    text-decoration: none; transition: all 0.2s; margin-top: 4px;
+  }
+  .cv-link-card:hover { border-color: var(--accent1); box-shadow: 0 4px 16px rgba(0,120,212,0.1); }
+  .cv-link-card .cv-icon { font-size: 1.5rem; }
+  .cv-link-card .cv-label { font-size: 0.72rem; color: var(--accent1); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .cv-link-card .cv-name { font-size: 0.93rem; color: var(--text); font-weight: 700; margin-top: 2px; }
+  .cv-link-card .cv-arrow { margin-left: auto; color: var(--accent1); font-size: 1.1rem; }
+
+  .contact-form-area { display: flex; flex-direction: column; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 0.78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
+  .form-input, .form-textarea {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 11px 14px; color: var(--text); font-size: 0.93rem;
+    font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; outline: none;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent1); box-shadow: 0 0 0 3px rgba(0,120,212,0.07); }
+  .form-textarea { resize: vertical; min-height: 110px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text); color: rgba(255,255,255,0.55);
+    padding: 28px 56px; display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-left { font-size: 0.83rem; }
+  .footer-left span { color: #fff; font-weight: 600; }
+  .footer-right { font-size: 0.78rem; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.88); align-items: center; justify-content: center; flex-direction: column; padding: 20px; }
+  .lightbox.open { display: flex; }
+  .lightbox-inner { max-width: 960px; width: 100%; position: relative; }
+  .lightbox-close { position: absolute; top: -46px; right: 0; background: transparent; border: none; color: rgba(255,255,255,0.6); font-size: 1.7rem; cursor: pointer; transition: color 0.2s; line-height: 1; }
+  .lightbox-close:hover { color: #fff; }
+  .lightbox-img { width: 100%; max-height: 70vh; object-fit: contain; border-radius: 10px; }
+  .lightbox-caption { text-align: center; margin-top: 14px; color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+  .lightbox-nav { display: flex; gap: 12px; justify-content: center; margin-top: 14px; align-items: center; }
+  .lb-nav-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; transition: all 0.2s; }
+  .lb-nav-btn:hover { background: rgba(255,255,255,0.2); }
+  #lb-counter { color: rgba(255,255,255,0.5); font-size: 0.83rem; min-width: 50px; text-align: center; }
+
+  /* ── MODALS ── */
+  .modal { display: none; position: fixed; inset: 0; z-index: 900; background: rgba(0,0,0,0.45); align-items: center; justify-content: center; padding: 20px; }
+  .modal.open { display: flex; }
+  .modal-box { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; box-shadow: 0 16px 48px rgba(0,0,0,0.15); }
+  .modal-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 22px; }
+  .modal-close-btn { float: right; background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.3rem; line-height: 1; }
+  .upload-drop { border: 2px dashed var(--border); border-radius: 10px; padding: 28px; text-align: center; cursor: pointer; transition: border-color 0.2s; margin-bottom: 14px; background: var(--surface); }
+  .upload-drop:hover { border-color: var(--accent1); }
+  .upload-drop input { display: none; }
+  .upload-drop p { color: var(--muted); font-size: 0.83rem; }
+  .upload-drop .upload-big-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .photo-previews { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+  .preview-item { position: relative; width: 76px; height: 76px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .preview-item img { width: 100%; height: 100%; object-fit: cover; }
+  .preview-remove { position: absolute; top: 3px; right: 3px; background: rgba(0,0,0,0.65); border: none; color: #fff; width: 20px; height: 20px; border-radius: 50%; cursor: pointer; font-size: 0.72rem; display: flex; align-items: center; justify-content: center; }
+  .photo-desc-inputs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  .photo-desc-row { display: flex; gap: 10px; align-items: center; }
+  .photo-desc-thumb { width: 38px; height: 38px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 22px; }
+
+  /* ── ANIMS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-content > * { animation: fadeUp 0.55s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-stack { animation: fadeUp 0.55s ease 0.3s both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    nav { padding: 14px 24px; }
+    section { padding: 72px 24px; }
+    #hero { padding: 110px 24px 60px; }
+    .hero-stack { position: static; transform: none; flex-direction: row; flex-wrap: wrap; margin-top: 44px; }
+    .stack-card { flex: 1; min-width: 160px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+    footer { flex-direction: column; text-align: center; padding: 22px 24px; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero-name { font-size: 2.5rem; }
+  }
+</style>
 </head>
-<body class="bg-white text-slate-800 font-sans leading-relaxed">
+<body>
 
-    <header class="py-20 px-6 bg-slate-soft border-b border-slate-200">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-6xl font-black text-slate-900 tracking-tighter mb-4 uppercase">
-                Kenny <span class="text-slate-500">Khalid</span>
-            </h1>
-            <p class="text-sm font-bold text-slate-500 tracking-[0.4em] uppercase mb-8">
-                IT Support Analyst · M365 & Cloud Engineer
-            </p>
-            <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
-                B.S. Computer System Engineering with specialized expertise in Azure Infrastructure, Intune MDM, and ITIL-aligned service management. Based in Melbourne.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="Kenny_K_CV.pdf" target="_blank" class="bg-slate-900 text-white px-8 py-3 rounded-sm font-bold text-xs tracking-widest hover:bg-slate-700 transition">DOWNLOAD CV</a>
-                <a href="#contact" class="border border-slate-300 text-slate-900 px-8 py-3 rounded-sm font-bold text-xs tracking-widest hover:bg-slate-50 transition">CONTACT</a>
-            </div>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Kenny<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#stack">This Site</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn-primary" style="padding:9px 20px;font-size:0.85rem;">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🇦🇺 Melbourne, Victoria — Available for Work</div>
+    <h1 class="hero-name">Kenny<br><span class="highlight">Khalid</span></h1>
+    <div class="hero-titles">
+      <span class="title-pill primary">IT Support Analyst</span>
+      <span class="title-pill">Cloud Support Engineer</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects ↓</a>
+      <a href="Kenny_K_CV.pdf" target="_blank" class="btn-outline">Download CV ↗</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-stack">
+    <div class="stack-card">
+      <div class="stack-icon">☁️</div>
+      <div>
+        <div class="stack-label">Certified</div>
+        <div class="stack-name">MS-900 · AZ-900</div>
+      </div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">📋</div>
+      <div>
+        <div class="stack-label">In Progress</div>
+        <div class="stack-name">ITIL 5 · AZ-104</div>
+      </div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🛡️</div>
+      <div>
+        <div class="stack-label">Work Rights</div>
+        <div class="stack-name">AU Permanent Resident</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="section-tag">Qualifications</div>
+  <h2 class="section-title">Certifications</h2>
+  <p class="section-sub">Microsoft-certified with ongoing study toward Azure administration and ITIL service management.</p>
+  <div class="certs-grid">
+    <div class="cert-item">
+      <div class="cert-icon" style="background:rgba(0,120,212,0.08);">☁️</div>
+      <div>
+        <div class="cert-name">MS-900: Microsoft 365 Fundamentals</div>
+        <div class="cert-status done">✓ Certified</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon" style="background:rgba(92,45,145,0.08);">🔷</div>
+      <div>
+        <div class="cert-name">AZ-900: Azure Fundamentals</div>
+        <div class="cert-status done">✓ Certified</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon" style="background:rgba(16,124,16,0.08);">📋</div>
+      <div>
+        <div class="cert-name">ITIL 5 Foundation</div>
+        <div class="cert-status done">✓ Certified</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon" style="background:rgba(216,59,1,0.08);">🔧</div>
+      <div>
+        <div class="cert-name">AZ-104: Azure Administrator</div>
+        <div class="cert-status progress">⏳ In Progress</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">Technical Toolkit</div>
+  <h2 class="section-title">Skills &amp; Technologies</h2>
+  <p class="section-sub">Broad hands-on experience across Microsoft cloud platforms, endpoint management, and IT support.</p>
+  <div class="skills-grid">
+    <div class="skill-card" style="--color:var(--accent1)"><div class="skill-emoji">☁️</div><div class="skill-name">Microsoft 365</div><div class="skill-desc">Exchange, Teams, SharePoint, OneDrive, Admin Center</div></div>
+    <div class="skill-card" style="--color:var(--accent2)"><div class="skill-emoji">🔷</div><div class="skill-name">Microsoft Azure</div><div class="skill-desc">Entra ID, VM management, IAM, Subscriptions</div></div>
+    <div class="skill-card" style="--color:#0072c6"><div class="skill-emoji">🖥️</div><div class="skill-name">Active Directory</div><div class="skill-desc">Users, groups, GPO, DNS, DHCP</div></div>
+    <div class="skill-card" style="--color:var(--accent3)"><div class="skill-emoji">🔒</div><div class="skill-name">Intune / MDM</div><div class="skill-desc">Device enrolment, compliance, app deployment</div></div>
+    <div class="skill-card" style="--color:var(--accent4)"><div class="skill-emoji">🎫</div><div class="skill-name">ITSM / Ticketing</div><div class="skill-desc">ServiceNow, Freshdesk, Jira, Zendesk</div></div>
+    <div class="skill-card" style="--color:#00b4d8"><div class="skill-emoji">🌐</div><div class="skill-name">Networking</div><div class="skill-desc">TCP/IP, DNS, DHCP, VPN, firewall basics</div></div>
+    <div class="skill-card" style="--color:var(--accent2)"><div class="skill-emoji">💻</div><div class="skill-name">Windows &amp; macOS</div><div class="skill-desc">Desktop support, imaging, OS deployment</div></div>
+    <div class="skill-card" style="--color:var(--accent1)"><div class="skill-emoji">📧</div><div class="skill-name">Email / DNS</div><div class="skill-desc">SPF, DKIM, DMARC, MX records, deliverability</div></div>
+    <div class="skill-card" style="--color:var(--accent3)"><div class="skill-emoji">🛡️</div><div class="skill-name">Security &amp; MFA</div><div class="skill-desc">Conditional Access, MFA rollouts, endpoint hardening</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- THIS SITE -->
+<section id="stack">
+  <div class="section-tag">Infrastructure</div>
+  <h2 class="section-title">How This Site is Built</h2>
+  <p class="section-sub">This portfolio is a live Microsoft cloud project — hosted and managed using the same tools I work with professionally every day.</p>
+  <div class="stack-info-grid">
+    <div class="stack-info-card">
+      <div class="stack-info-top">
+        <div class="stack-info-icon" style="background:rgba(0,120,212,0.08);">🔷</div>
+        <div>
+          <div class="stack-info-name">Azure Static Web Apps</div>
+          <div class="stack-info-sub">Hosting &amp; global CDN delivery</div>
         </div>
-    </header>
-
-    <section class="max-w-4xl mx-auto px-6 py-20" id="projects">
-        <h2 class="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-12 border-b pb-2">Technical Labs & Projects</h2>
-        
-        <div class="space-y-4">
-            <div class="border border-slate-200 rounded-sm overflow-hidden bg-white hover:border-slate-400 transition cursor-pointer" onclick="toggle('intune')">
-                <div class="p-6 flex justify-between items-center">
-                    <span class="font-bold text-slate-800 uppercase text-sm tracking-wider">01. Intune & Autopilot Deployment</span>
-                    <i class="fas fa-plus text-slate-400" id="icon-intune"></i>
-                </div>
-                <div id="intune" class="project-detail p-6 pt-0 bg-slate-50">
-                    <img src="https://via.placeholder.com/800x400?text=Intune+Dashboard+Screenshot" alt="Intune Lab" class="w-full h-auto mb-4 border">
-                    <p class="text-sm text-slate-600">Provisioned Windows 11 endpoints via my M365 E5 tenant. Configured security baselines, BitLocker enforcement, and automated software packaging.</p>
-                </div>
-            </div>
-
-            <div class="border border-slate-200 rounded-sm overflow-hidden bg-white hover:border-slate-400 transition cursor-pointer" onclick="toggle('azure')">
-                <div class="p-6 flex justify-between items-center">
-                    <span class="font-bold text-slate-800 uppercase text-sm tracking-wider">02. Azure Infrastructure & Entra ID</span>
-                    <i class="fas fa-plus text-slate-400" id="icon-azure"></i>
-                </div>
-                <div id="azure" class="project-detail p-6 pt-0 bg-slate-50">
-                    <img src="https://via.placeholder.com/800x400?text=Azure+Portal+Screenshot" alt="Azure Lab" class="w-full h-auto mb-4 border">
-                    <p class="text-sm text-slate-600">Implemented Entra ID Conditional Access policies for MFA. Managed VNETs, NSGs, and automated VM backups on my professional domain.</p>
-                </div>
-            </div>
+      </div>
+      <div class="stack-info-desc">The site is deployed as an Azure Static Web App, providing global CDN distribution, automatic SSL/TLS certificates, and HTTPS enforcement — all managed through the Azure Portal.</div>
+    </div>
+    <div class="stack-info-card">
+      <div class="stack-info-top">
+        <div class="stack-info-icon" style="background:rgba(30,30,30,0.06);">🐙</div>
+        <div>
+          <div class="stack-info-name">GitHub</div>
+          <div class="stack-info-sub">Source control &amp; CI/CD pipeline</div>
         </div>
-    </section>
-
-    <section class="bg-slate-900 text-white py-20 px-6">
-        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-            <div>
-                <h3 class="text-xs font-black text-slate-500 uppercase tracking-widest mb-6">Core Competencies</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><span class="text-slate-400">#</span> Microsoft 365 (Exchange, Teams, Intune)</li>
-                    <li><span class="text-slate-400">#</span> Azure Administration & Identity (Entra)</li>
-                    <li><span class="text-slate-400">#</span> ITIL Foundation (Incident & SLA Management)</li>
-                    <li><span class="text-slate-400">#</span> Jira Service Management (JSM)</li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xs font-black text-slate-500 uppercase tracking-widest mb-6">Certifications</h3>
-                <ul class="space-y-2 text-sm font-bold">
-                    <li>MS-900: M365 Fundamentals [Certified]</li>
-                    <li>AZ-900: Azure Fundamentals [Certified]</li>
-                    <li>ITIL 4 Foundation [Certified]</li>
-                </ul>
-            </div>
+      </div>
+      <div class="stack-info-desc">Source code is version-controlled on GitHub. Azure Static Web Apps integrates directly with the repository — every push to the main branch triggers an automatic build and deployment via GitHub Actions.</div>
+    </div>
+    <div class="stack-info-card">
+      <div class="stack-info-top">
+        <div class="stack-info-icon" style="background:rgba(0,120,212,0.08);">✉️</div>
+        <div>
+          <div class="stack-info-name">Microsoft 365</div>
+          <div class="stack-info-sub">Custom domain email tenant</div>
         </div>
-    </section>
-
-    <footer class="py-20 px-6 text-center" id="contact">
-        <h2 class="text-2xl font-bold mb-4">Let's Connect</h2>
-       
-        <p class="font-bold text-slate-900">contact@kennyk.online</p>
-        <div class="mt-8 flex justify-center gap-6 text-2xl text-slate-400">
-            <a href="https://linkedin.com/in/kenny-khalid" target="_blank" class="hover:text-slate-900"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:contact@kennyk.online" class="hover:text-slate-900"><i class="fas fa-envelope"></i></a>
+      </div>
+      <div class="stack-info-desc">The contact@kennyk.online mailbox runs through a Microsoft 365 tenant. MX, SPF, DKIM, and DMARC records are configured on the domain for authenticated, secure email delivery.</div>
+    </div>
+    <div class="stack-info-card">
+      <div class="stack-info-top">
+        <div class="stack-info-icon" style="background:rgba(16,124,16,0.08);">🌐</div>
+        <div>
+          <div class="stack-info-name">Custom Domain &amp; DNS</div>
+          <div class="stack-info-sub">kennyk.online</div>
         </div>
-    </footer>
+      </div>
+      <div class="stack-info-desc">The custom domain is mapped to Azure Static Web Apps via a CNAME record. The same DNS zone serves both the web hosting and the Microsoft 365 mail service from a single domain.</div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        function toggle(id) {
-            const detail = document.getElementById(id);
-            const icon = document.getElementById('icon-' + id);
-            detail.classList.toggle('active');
-            icon.classList.toggle('fa-plus');
-            icon.classList.toggle('fa-minus');
-        }
-    </script>
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-tag">My Work</div>
+  <h2 class="section-title">Projects</h2>
+  <p class="section-sub">Documented implementations across Microsoft 365 and Azure platforms.</p>
+
+  <div class="project-tabs">
+    <button class="tab-btn active" onclick="switchTab('m365',this)">☁️ M365 Projects</button>
+    <button class="tab-btn coming">🔷 Azure Projects &nbsp;<span style="font-size:0.72rem;background:rgba(92,45,145,0.1);color:var(--accent2);padding:2px 8px;border-radius:4px;font-weight:700;">Coming Soon</span></button>
+  </div>
+
+  <div class="tab-panel active" id="tab-m365">
+    <div class="projects-grid" id="m365-grid">
+      <div class="project-card" data-id="p1">
+        <div class="project-photos" onclick="openLightbox('p1')">
+          <div class="no-photos-placeholder">
+            <div class="upload-icon">📷</div>
+            <p>No photos yet</p>
+          </div>
+          <div class="expand-overlay"><span class="expand-icon">⛶ Expand</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-cat">M365 · Exchange Online</div>
+          <div class="project-name">SPF / DKIM / DMARC Email Security Setup</div>
+          <div class="project-actions">
+            <button class="btn-sm btn-upload" onclick="openUploadModal('p1')">📷 Add Photos</button>
+            <button class="btn-sm btn-expand-sm" onclick="openLightbox('p1')">⛶ Expand</button>
+          </div>
+        </div>
+      </div>
+      <div class="add-project-card" onclick="openAddProjectModal()">
+        <div class="add-icon">＋</div>
+        <div>Add M365 Project</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-azure">
+    <div class="coming-soon-panel">
+      <div class="big-icon">🔷</div>
+      <h3>Azure Projects Coming Soon</h3>
+      <p>Documenting Azure VM deployments, Entra ID configurations,<br>and cloud infrastructure work. Check back soon.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">Say Hello</div>
+  <h2 class="section-title">Get in Touch</h2>
+  <p class="section-sub">Available for IT Support Analyst and Cloud Support roles in Melbourne. Let's connect.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <a href="mailto:contact@kennyk.online" class="contact-item">
+        <div class="contact-item-icon" style="background:rgba(0,120,212,0.08);">✉️</div>
+        <div><div class="contact-item-label">Email</div><div class="contact-item-value">contact@kennyk.online</div></div>
+      </a>
+      <a href="tel:+61481000556" class="contact-item">
+        <div class="contact-item-icon" style="background:rgba(16,124,16,0.08);">📱</div>
+        <div><div class="contact-item-label">Phone</div><div class="contact-item-value">0481 000 556</div></div>
+      </a>
+      <div class="contact-item" style="cursor:default;">
+        <div class="contact-item-icon" style="background:rgba(216,59,1,0.08);">📍</div>
+        <div><div class="contact-item-label">Location</div><div class="contact-item-value">South Morang, VIC 🇦🇺</div></div>
+      </div>
+      <a href="Kenny_K_CV.pdf" target="_blank" class="cv-link-card">
+        <div class="cv-icon">📄</div>
+        <div>
+          <div class="cv-label">Download CV</div>
+          <div class="cv-name">Kenny_K_CV.pdf</div>
+        </div>
+        <div class="cv-arrow">↗</div>
+      </a>
+    </div>
+    <div class="contact-form-area">
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input class="form-input" type="text" placeholder="Jane Smith">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" placeholder="jane@company.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Tell me about the role or opportunity..."></textarea>
+      </div>
+      <button class="btn-primary" style="align-self:flex-start;" onclick="handleContactForm()">Send Message ✉️</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">© 2025 <span>Kenny Khalid</span> · IT Support Analyst · Melbourne, VIC 🇦🇺</div>
+  <div class="footer-right">kennyk.online · MS-900 · AZ-900 · ITIL 5</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img class="lightbox-img" id="lb-img" src="" alt="">
+    <div class="lightbox-caption" id="lb-caption"></div>
+    <div class="lightbox-nav">
+      <button class="lb-nav-btn" onclick="lbPrev()">← Prev</button>
+      <span id="lb-counter"></span>
+      <button class="lb-nav-btn" onclick="lbNext()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- UPLOAD MODAL -->
+<div class="modal" id="upload-modal">
+  <div class="modal-box">
+    <div class="modal-title">📷 Add Photos <button class="modal-close-btn" onclick="closeModal('upload-modal')">✕</button></div>
+    <div class="upload-drop" onclick="document.getElementById('file-input').click()">
+      <div class="upload-big-icon">🖼️</div>
+      <p>Click to upload photos (JPG, PNG, WebP)<br><small>Multiple files supported</small></p>
+      <input type="file" id="file-input" multiple accept="image/*" onchange="handleFileSelect(event)">
+    </div>
+    <div class="photo-previews" id="photo-previews"></div>
+    <div class="photo-desc-inputs" id="photo-desc-inputs"></div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="savePhotos()">Save Photos</button>
+      <button class="btn-outline" onclick="closeModal('upload-modal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD PROJECT MODAL -->
+<div class="modal" id="add-project-modal">
+  <div class="modal-box">
+    <div class="modal-title">＋ Add M365 Project <button class="modal-close-btn" onclick="closeModal('add-project-modal')">✕</button></div>
+    <div class="form-group" style="margin-bottom:12px">
+      <label class="form-label">Project Title</label>
+      <input class="form-input" id="new-proj-title" placeholder="e.g. Teams Rollout for 50 Users">
+    </div>
+    <div class="form-group" style="margin-bottom:12px">
+      <label class="form-label">Category / Technology</label>
+      <input class="form-input" id="new-proj-cat" placeholder="e.g. M365 · Teams">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="addProject()">Add Project</button>
+      <button class="btn-outline" onclick="closeModal('add-project-modal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const projectData={p1:{id:'p1',cat:'M365 · Exchange Online',title:'SPF / DKIM / DMARC Email Security Setup',photos:[]}};
+let currentUploadId=null,pendingFiles=[],lbPhotos=[],lbIndex=0;
+
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function openUploadModal(pid){
+  currentUploadId=pid;
+  pendingFiles=(projectData[pid]?.photos||[]).map(p=>({file:null,dataUrl:p.src,desc:p.desc||''}));
+  renderPreviews();
+  document.getElementById('upload-modal').classList.add('open');
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  pendingFiles=[];currentUploadId=null;
+  document.getElementById('file-input').value='';
+}
+function handleFileSelect(e){
+  Promise.all(Array.from(e.target.files).map(f=>new Promise(res=>{
+    const r=new FileReader();r.onload=ev=>res({file:f,dataUrl:ev.target.result,desc:''});r.readAsDataURL(f);
+  }))).then(results=>{pendingFiles.push(...results);renderPreviews();});
+}
+function renderPreviews(){
+  const pre=document.getElementById('photo-previews'),desc=document.getElementById('photo-desc-inputs');
+  pre.innerHTML='';desc.innerHTML='';
+  pendingFiles.forEach((pf,i)=>{
+    const d=document.createElement('div');d.className='preview-item';
+    d.innerHTML=`<img src="${pf.dataUrl}"><button class="preview-remove" onclick="removePending(${i})">✕</button>`;
+    pre.appendChild(d);
+    const r=document.createElement('div');r.className='photo-desc-row';
+    r.innerHTML=`<img class="photo-desc-thumb" src="${pf.dataUrl}"><input class="form-input" style="flex:1" placeholder="Photo description (optional)" value="${pf.desc||''}" oninput="pendingFiles[${i}].desc=this.value">`;
+    desc.appendChild(r);
+  });
+}
+function removePending(i){pendingFiles.splice(i,1);renderPreviews();}
+function savePhotos(){
+  if(!currentUploadId)return;
+  projectData[currentUploadId].photos=pendingFiles.map(pf=>({src:pf.dataUrl,desc:pf.desc||''}));
+  renderProjectCard(currentUploadId);closeModal('upload-modal');
+}
+function renderProjectCard(id){
+  const proj=projectData[id];
+  const card=document.querySelector(`.project-card[data-id="${id}"]`);
+  if(!card)return;
+  const photos=proj.photos||[];
+  let ph='';
+  if(!photos.length){
+    ph=`<div class="no-photos-placeholder"><div class="upload-icon">📷</div><p>No photos yet</p></div>`;
+  } else {
+    const count=Math.min(photos.length,4);
+    let t='';
+    photos.slice(0,4).forEach((p,i)=>{
+      t+=i===3&&photos.length>4
+        ?`<div class="photo-thumb"><img src="${p.src}"><div class="photo-more-overlay">+${photos.length-3}</div></div>`
+        :`<div class="photo-thumb"><img src="${p.src}" alt="${p.desc}"></div>`;
+    });
+    ph=`<div class="project-photos-grid count-${count}">${t}</div>`;
+  }
+  card.innerHTML=`
+    <div class="project-photos" onclick="openLightbox('${id}')">
+      ${ph}<div class="expand-overlay"><span class="expand-icon">⛶ Expand</span></div>
+    </div>
+    <div class="project-body">
+      <div class="project-cat">${proj.cat}</div>
+      <div class="project-name">${proj.title}</div>
+      <div class="project-actions">
+        <button class="btn-sm btn-upload" onclick="openUploadModal('${id}')">📷 ${photos.length?'Edit Photos':'Add Photos'}</button>
+        <button class="btn-sm btn-expand-sm" onclick="openLightbox('${id}')">⛶ Expand</button>
+      </div>
+    </div>`;
+}
+function openLightbox(id){
+  const proj=projectData[id];if(!proj||!proj.photos.length)return;
+  lbPhotos=proj.photos;lbIndex=0;renderLbSlide();
+  document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';
+}
+function renderLbSlide(){
+  const ph=lbPhotos[lbIndex];
+  document.getElementById('lb-img').src=ph.src;
+  document.getElementById('lb-caption').textContent=ph.desc||'';
+  document.getElementById('lb-counter').textContent=`${lbIndex+1} / ${lbPhotos.length}`;
+}
+function lbNext(){lbIndex=(lbIndex+1)%lbPhotos.length;renderLbSlide();}
+function lbPrev(){lbIndex=(lbIndex-1+lbPhotos.length)%lbPhotos.length;renderLbSlide();}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+function closeLightboxOutside(e){if(e.target===document.getElementById('lightbox'))closeLightbox();}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lightbox').classList.contains('open'))return;
+  if(e.key==='ArrowRight')lbNext();
+  if(e.key==='ArrowLeft')lbPrev();
+  if(e.key==='Escape')closeLightbox();
+});
+function openAddProjectModal(){document.getElementById('add-project-modal').classList.add('open');}
+let projCounter=2;
+function addProject(){
+  const title=document.getElementById('new-proj-title').value.trim();
+  const cat=document.getElementById('new-proj-cat').value.trim()||'M365';
+  if(!title){alert('Please enter a project title.');return;}
+  const id='p'+projCounter++;
+  projectData[id]={id,cat,title,photos:[]};
+  const grid=document.getElementById('m365-grid');
+  const addCard=grid.querySelector('.add-project-card');
+  const card=document.createElement('div');card.className='project-card';card.dataset.id=id;
+  grid.insertBefore(card,addCard);renderProjectCard(id);
+  closeModal('add-project-modal');
+  document.getElementById('new-proj-title').value='';
+  document.getElementById('new-proj-cat').value='';
+}
+function handleContactForm(){
+  const name=document.querySelector('.contact-form-area input[type=text]').value.trim();
+  const email=document.querySelector('.contact-form-area input[type=email]').value.trim();
+  const msg=document.querySelector('.contact-form-area textarea').value.trim();
+  if(!name||!email||!msg){alert('Please fill in all fields.');return;}
+  window.location.href=`mailto:contact@kennyk.online?subject=Portfolio Enquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(msg+'\n\nFrom: '+name+'\nEmail: '+email)}`;
+}
+</script>
 </body>
 </html>
