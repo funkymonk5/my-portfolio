@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Extra Mile Auto Parts — eBay Price Intelligence Platform | Project Scope</title>
+<meta name="description" content="Scope, deliverables and visual mockups for the eBay price comparison & repricing platform built for Extra Mile Auto Parts." />
+<style>
+  :root{
+    --navy:#0f1b3d; --navy-2:#1e3a5f; --blue:#3b6fa0; --ice:#e8edf3;
+    --bg:#f7f9fc; --card:#ffffff; --text:#0f1b3d; --muted:#5b6b85;
+    --green:#1f9d55; --amber:#d97706; --red:#dc2626;
+    --border:#dde4ef; --shadow:0 6px 24px rgba(15,27,61,.08);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.2;color:var(--navy)}
+  a{color:var(--blue);text-decoration:none}
+  .container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;padding:80px 0 100px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(59,111,160,.4),transparent 50%);pointer-events:none}
+  .hero .container{position:relative;z-index:1}
+  .badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:999px;font-size:13px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:20px}
+  .hero h1{color:#fff;font-size:clamp(32px,5vw,52px);margin:0 0 16px;letter-spacing:-.02em}
+  .hero .sub{color:#cdd6e8;font-size:18px;max-width:720px;margin:0 0 32px}
+  .meta{display:flex;flex-wrap:wrap;gap:24px;margin-top:24px;color:#cdd6e8;font-size:14px}
+  .meta b{color:#fff;display:block;font-size:15px;font-family:'Space Grotesk',sans-serif}
+
+  /* Sections */
+  section{padding:64px 0;border-bottom:1px solid var(--border)}
+  section h2{font-size:30px;margin:0 0 8px}
+  section .lede{color:var(--muted);font-size:17px;margin:0 0 36px;max-width:780px}
+
+  .grid{display:grid;gap:20px}
+  .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+  .grid.cols-4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.grid.cols-2,.grid.cols-3,.grid.cols-4{grid-template-columns:1fr}}
+
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(15,27,61,.12)}
+  .card .icon{width:42px;height:42px;border-radius:10px;background:var(--ice);display:flex;align-items:center;justify-content:center;color:var(--navy);margin-bottom:14px;font-size:20px;font-weight:700}
+  .card h3{margin:0 0 8px;font-size:18px}
+  .card p{margin:0;color:var(--muted);font-size:14.5px}
+
+  /* KPI strip */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0 0}
+  @media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px}
+  .kpi .num{font-family:'Space Grotesk',sans-serif;font-size:26px;color:var(--navy);font-weight:700}
+  .kpi .lbl{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+
+  /* Mockups */
+  .mockup{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-top:18px}
+  .mockup .bar{background:#f1f4f9;padding:10px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--border)}
+  .dot{width:10px;height:10px;border-radius:50%;background:#ddd}
+  .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+  .mockup .url{margin-left:14px;background:#fff;border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;color:var(--muted);font-family:ui-monospace,monospace}
+  .mockup-body{padding:22px}
+
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border)}
+  th{background:#f6f8fc;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:600}
+  td.mpn{font-family:ui-monospace,monospace;font-size:13px;color:var(--navy)}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600}
+  .pill.g{background:#dcfce7;color:#166534}
+  .pill.y{background:#fef3c7;color:#92400e}
+  .pill.r{background:#fee2e2;color:#991b1b}
+  .pill.b{background:#dbeafe;color:#1e40af}
+
+  /* Bars */
+  .bars{display:flex;align-items:flex-end;gap:14px;height:160px;padding:8px 4px;border-bottom:1px solid var(--border);margin-bottom:10px}
+  .bar-item{flex:1;background:linear-gradient(180deg,var(--blue),var(--navy-2));border-radius:6px 6px 0 0;position:relative}
+  .bar-item span{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--muted);font-weight:600}
+  .bars-x{display:flex;gap:14px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .bars-x div{flex:1;text-align:center}
+
+  /* Sparkline */
+  svg.spark{width:100%;height:160px;display:block}
+
+  /* Phases */
+  .phase{display:grid;grid-template-columns:60px 1fr;gap:18px;padding:18px 0;border-bottom:1px dashed var(--border)}
+  .phase:last-child{border-bottom:none}
+  .phase .num{font-family:'Space Grotesk',sans-serif;font-size:28px;color:var(--blue);font-weight:700}
+  .phase h4{margin:0 0 4px;font-size:17px}
+  .phase p{margin:0;color:var(--muted);font-size:14.5px}
+
+  /* Tech chips */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .chip{background:var(--ice);color:var(--navy);font-size:13px;padding:5px 12px;border-radius:999px;font-weight:500}
+
+  /* CTA */
+  .cta{background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;border-radius:16px;padding:40px;text-align:center;margin:40px 0}
+  .cta h2{color:#fff;margin:0 0 8px}
+  .cta p{color:#cdd6e8;margin:0 0 22px}
+  .btn{display:inline-block;background:#fff;color:var(--navy);padding:12px 28px;border-radius:8px;font-weight:600;font-size:15px}
+  .btn.outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);margin-left:10px}
+
+  footer{padding:30px 0;text-align:center;color:var(--muted);font-size:13px}
+
+  .note{background:#fff8e6;border:1px solid #fde68a;color:#7a5b00;padding:12px 16px;border-radius:10px;font-size:13.5px;margin-top:16px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <span class="badge">Project Proposal · Confidential</span>
+    <h1>eBay Price Intelligence Platform</h1>
+    <p class="sub">A custom-built application for <b>Extra Mile Auto Parts</b> that automatically tracks competitor pricing across 250,000+ eBay listings, identifies overpriced items, and generates ready-to-import repricing reports.</p>
+    <div class="meta">
+      <div><b>Client</b>Extra Mile Auto Parts</div>
+      <div><b>Catalog Size</b>250,000+ MPN listings</div>
+      <div><b>Prepared by</b>Kenny Khalid</div>
+      <div><b>Status</b>Scope &amp; Concept</div>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section>
+  <div class="container">
+    <h2>The Problem</h2>
+    <p class="lede">Manually checking competitor prices on eBay across a quarter-million MPNs is impossible. Naïve scraping from a single IP gets blocked within minutes and breaches eBay's Terms of Service. Without live competitive data, listings drift out of price — losing the Buy Box and revenue.</p>
+    <div class="grid cols-3">
+      <div class="card"><div class="icon">⚠</div><h3>Scale</h3><p>250k+ listings × multiple competitors per MPN = millions of comparisons.</p></div>
+      <div class="card"><div class="icon">🚫</div><h3>IP Throttling</h3><p>Direct scraping triggers eBay rate limits and bans within minutes.</p></div>
+      <div class="card"><div class="icon">📉</div><h3>Lost Revenue</h3><p>Overpriced listings silently lose Buy Box and search ranking every day.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section>
+  <div class="container">
+    <h2>The Solution</h2>
+    <p class="lede">A compliant, scalable platform built on the official <b>eBay Browse API</b> (free, ToS-friendly) with batched scheduled comparisons, a rich web dashboard, and exportable reports your team can re-upload to eBay's bulk editor.</p>
+    <div class="grid cols-4">
+      <div class="card"><div class="icon">📥</div><h3>Excel Import</h3><p>Drop your master inventory file. App parses MPN, eBay item ID and vehicle fitment.</p></div>
+      <div class="card"><div class="icon">🔍</div><h3>Auto Compare</h3><p>Nightly batch queries the eBay Browse API for every MPN — fully compliant.</p></div>
+      <div class="card"><div class="icon">📊</div><h3>Live Dashboard</h3><p>Sortable table, KPIs, charts and per-MPN drill-down with price history.</p></div>
+      <div class="card"><div class="icon">📤</div><h3>Repricing Export</h3><p>One-click Excel/CSV ready for eBay's bulk price update tool.</p></div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="num">250k+</div><div class="lbl">MPNs Monitored</div></div>
+      <div class="kpi"><div class="num">~24h</div><div class="lbl">Full Refresh Cycle</div></div>
+      <div class="kpi"><div class="num">100%</div><div class="lbl">eBay ToS Compliant</div></div>
+      <div class="kpi"><div class="num">3</div><div class="lbl">Export Formats</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUP 1: Dashboard -->
+<section>
+  <div class="container">
+    <h2>Mockup 1 · Main Comparison Dashboard</h2>
+    <p class="lede">Sortable, filterable table showing every MPN's competitive position at a glance. Color-coded rank tells the team exactly where to focus.</p>
+    <div class="mockup">
+      <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="url">app.extramileparts.com/dashboard</span></div>
+      <div class="mockup-body">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+          <h3 style="margin:0">Price Comparison · 250,431 listings</h3>
+          <div>
+            <span class="pill b">🟢 Cheapest: 38%</span>
+            <span class="pill y" style="margin-left:6px">🟡 Competitive: 41%</span>
+            <span class="pill r" style="margin-left:6px">🔴 Overpriced: 21%</span>
+          </div>
+        </div>
+        <table>
+          <thead><tr><th>MPN</th><th>Listing</th><th>Your Price</th><th>Lowest</th><th>Avg Market</th><th>Rank</th><th>Suggested</th></tr></thead>
+          <tbody>
+            <tr><td class="mpn">BP-ABC-123</td><td>Front Brake Pad Set</td><td>$45.99</td><td>$39.50</td><td>$44.20</td><td><span class="pill r">#4 of 8</span></td><td><b>$39.45</b></td></tr>
+            <tr><td class="mpn">OF-DEF-456</td><td>Premium Oil Filter</td><td>$12.99</td><td>$14.50</td><td>$15.80</td><td><span class="pill g">#1 of 12</span></td><td>Hold</td></tr>
+            <tr><td class="mpn">SP-GHI-789</td><td>Spark Plug Set (4)</td><td>$28.50</td><td>$27.99</td><td>$29.10</td><td><span class="pill y">#2 of 6</span></td><td>$27.95</td></tr>
+            <tr><td class="mpn">AF-JKL-012</td><td>Air Filter — Toyota</td><td>$22.00</td><td>$15.75</td><td>$19.80</td><td><span class="pill r">#7 of 9</span></td><td><b>$15.70</b></td></tr>
+            <tr><td class="mpn">CB-MNO-345</td><td>Cabin Filter Premium</td><td>$18.49</td><td>$18.99</td><td>$21.20</td><td><span class="pill g">#1 of 14</span></td><td>Hold</td></tr>
+            <tr><td class="mpn">WB-PQR-678</td><td>Wiper Blade 22"</td><td>$11.99</td><td>$10.50</td><td>$12.40</td><td><span class="pill y">#3 of 11</span></td><td>$10.45</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUP 2: Detail -->
+<section>
+  <div class="container">
+    <h2>Mockup 2 · Per-MPN Detail View</h2>
+    <p class="lede">Click any MPN to see every active competitor listing, 90-day price history, and an algorithmic suggested price.</p>
+    <div class="grid cols-2">
+      <div class="mockup">
+        <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="url">.../mpn/BP-ABC-123</span></div>
+        <div class="mockup-body">
+          <h3 style="margin:0 0 4px">BP-ABC-123 · Front Brake Pads</h3>
+          <p style="margin:0 0 16px;color:var(--muted);font-size:13px">8 active competitors · Updated 2h ago</p>
+          <table>
+            <thead><tr><th>Seller</th><th>Price</th><th>Ship</th><th>FB%</th></tr></thead>
+            <tbody>
+              <tr><td>autozone_outlet</td><td><b>$39.50</b></td><td>Free</td><td>99.2%</td></tr>
+              <tr><td>parts_pro</td><td>$41.00</td><td>$4.99</td><td>98.7%</td></tr>
+              <tr><td><b style="color:var(--blue)">extramile (you)</b></td><td>$45.99</td><td>Free</td><td>99.8%</td></tr>
+              <tr><td>brake_world</td><td>$46.50</td><td>Free</td><td>97.4%</td></tr>
+              <tr><td>oem_direct</td><td>$48.99</td><td>$3.50</td><td>99.0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mockup">
+        <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="url">.../mpn/BP-ABC-123#history</span></div>
+        <div class="mockup-body">
+          <h3 style="margin:0 0 4px">90-Day Price Trend</h3>
+          <p style="margin:0 0 16px;color:var(--muted);font-size:13px">Your price vs market average</p>
+          <svg class="spark" viewBox="0 0 400 160" preserveAspectRatio="none">
+            <defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#3b6fa0" stop-opacity=".35"/><stop offset="100%" stop-color="#3b6fa0" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0,40 L40,45 L80,38 L120,50 L160,55 L200,48 L240,60 L280,70 L320,75 L360,72 L400,80 L400,160 L0,160 Z" fill="url(#g1)"/>
+            <path d="M0,40 L40,45 L80,38 L120,50 L160,55 L200,48 L240,60 L280,70 L320,75 L360,72 L400,80" stroke="#1e3a5f" stroke-width="2.5" fill="none"/>
+            <path d="M0,80 L40,82 L80,78 L120,85 L160,90 L200,88 L240,95 L280,100 L320,105 L360,108 L400,112" stroke="#dc2626" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+          </svg>
+          <div style="display:flex;gap:18px;font-size:12px;color:var(--muted);margin-top:6px">
+            <span><span style="display:inline-block;width:10px;height:3px;background:#1e3a5f;vertical-align:middle"></span> Market Avg</span>
+            <span><span style="display:inline-block;width:10px;height:3px;background:#dc2626;vertical-align:middle"></span> Your Price</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUP 3: KPI Dashboard -->
+<section>
+  <div class="container">
+    <h2>Mockup 3 · Executive KPI Dashboard</h2>
+    <p class="lede">High-level view for management — total revenue at risk, top overpriced items, and category-level competitiveness.</p>
+    <div class="mockup">
+      <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="url">app.extramileparts.com/insights</span></div>
+      <div class="mockup-body">
+        <div class="kpis" style="margin:0 0 24px">
+          <div class="kpi"><div class="num">$48,210</div><div class="lbl">Revenue at Risk</div></div>
+          <div class="kpi"><div class="num">52,890</div><div class="lbl">Overpriced Items</div></div>
+          <div class="kpi"><div class="num">+12.4%</div><div class="lbl">Avg Margin Gap</div></div>
+          <div class="kpi"><div class="num">94,673</div><div class="lbl">Buy Box Wins</div></div>
+        </div>
+        <h4 style="margin:0 0 12px">Competitiveness by Category</h4>
+        <div class="bars">
+          <div class="bar-item" style="height:85%"><span>92%</span></div>
+          <div class="bar-item" style="height:68%"><span>74%</span></div>
+          <div class="bar-item" style="height:78%"><span>83%</span></div>
+          <div class="bar-item" style="height:55%"><span>61%</span></div>
+          <div class="bar-item" style="height:90%"><span>96%</span></div>
+          <div class="bar-item" style="height:72%"><span>79%</span></div>
+          <div class="bar-item" style="height:48%"><span>54%</span></div>
+        </div>
+        <div class="bars-x">
+          <div>Brakes</div><div>Filters</div><div>Spark</div><div>Suspension</div><div>Lighting</div><div>Belts</div><div>Body</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUP 4: Export -->
+<section>
+  <div class="container">
+    <h2>Mockup 4 · Export &amp; Repricing Report</h2>
+    <p class="lede">One click generates a ready-to-upload file for eBay's bulk price update tool — plus a PDF executive summary for weekly review.</p>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="icon">📊</div>
+        <h3>Excel (.xlsx)</h3>
+        <p>Master file with original columns + Lowest_Competitor, Avg_Market, Rank, Suggested_Price, Gap_%, Last_Checked. Color-coded.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📄</div>
+        <h3>PDF Summary</h3>
+        <p>2–3 page executive report: KPIs, top 20 overpriced items, recommendations. Auto-emailed weekly.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📋</div>
+        <h3>CSV for eBay</h3>
+        <p>Pre-formatted for eBay's File Exchange / Bulk Editor — paste in to update thousands of prices in one go.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+    <h2>How It Works · Architecture</h2>
+    <p class="lede">Built on official, ToS-compliant infrastructure. No scraping, no IP bans, no surprises.</p>
+    <div class="grid cols-2">
+      <div class="card">
+        <div class="icon">1</div>
+        <h3>eBay Browse API (Official)</h3>
+        <p>Free OAuth-authenticated API designed for exactly this purpose. 5,000 calls/day on free tier; higher tiers available. Fully compliant with eBay Developer Program.</p>
+      </div>
+      <div class="card">
+        <div class="icon">2</div>
+        <h3>Scheduled Batch Engine</h3>
+        <p>Server-side worker processes ~50,000 MPNs/night with intelligent throttling and retry logic. Full catalog refreshed every 24 hours.</p>
+      </div>
+      <div class="card">
+        <div class="icon">3</div>
+        <h3>Cloud Database</h3>
+        <p>PostgreSQL stores listings, competitors, prices and 90-day history. Indexed for instant search across 250k records.</p>
+      </div>
+      <div class="card">
+        <div class="icon">4</div>
+        <h3>Web Dashboard</h3>
+        <p>React + Tailwind front-end. Responsive, login-protected, role-based access for owner/staff/viewer.</p>
+      </div>
+    </div>
+    <div class="chips">
+      <span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span>
+      <span class="chip">PostgreSQL</span><span class="chip">Edge Functions</span><span class="chip">eBay Browse API</span>
+      <span class="chip">OAuth 2.0</span><span class="chip">Excel Import/Export</span><span class="chip">PDF Reports</span>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY PHASES -->
+<section>
+  <div class="container">
+    <h2>Delivery Phases</h2>
+    <p class="lede">Phased rollout — you see something working in week 1, full production-ready by week 6.</p>
+    <div class="phase"><div class="num">01</div><div><h4>Discovery &amp; eBay App Registration</h4><p>Register Extra Mile's eBay Developer account, obtain Browse API keys, finalise data model from your master Excel.</p></div></div>
+    <div class="phase"><div class="num">02</div><div><h4>Excel Importer + Database</h4><p>Upload your full inventory, parse MPN/Item ID/fitment, store in cloud database with search indexes.</p></div></div>
+    <div class="phase"><div class="num">03</div><div><h4>eBay API Integration</h4><p>Build the worker that pulls competitor pricing for each MPN. Test on a 1,000-item sample before scaling.</p></div></div>
+    <div class="phase"><div class="num">04</div><div><h4>Dashboard &amp; Drill-Down</h4><p>Sortable table, MPN detail view, price history charts, KPI dashboard.</p></div></div>
+    <div class="phase"><div class="num">05</div><div><h4>Export Engine</h4><p>Excel / CSV / PDF generation. Weekly auto-email of executive summary.</p></div></div>
+    <div class="phase"><div class="num">06</div><div><h4>Launch &amp; Training</h4><p>Production deployment, user accounts, 1-hour onboarding session, 30 days of post-launch support.</p></div></div>
+  </div>
+</section>
+
+<!-- COMPLIANCE -->
+<section>
+  <div class="container">
+    <h2>Compliance &amp; Risk</h2>
+    <div class="grid cols-2">
+      <div class="card"><div class="icon">✓</div><h3>100% eBay ToS Compliant</h3><p>Uses only official APIs with registered developer credentials. Zero scraping. No risk of seller account suspension.</p></div>
+      <div class="card"><div class="icon">🔒</div><h3>Secure by Default</h3><p>OAuth tokens stored as encrypted secrets. HTTPS everywhere. Role-based access control. Daily automated backups.</p></div>
+    </div>
+    <div class="note">⚠ <b>Note:</b> The eBay Browse API has a free tier of ~5,000 calls/day. For 250k MPNs refreshed daily we will request a higher quota from eBay during onboarding (standard process, typically approved in 5–10 business days).</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="border-bottom:none">
+  <div class="container">
+    <div class="cta">
+      <h2>Ready to move forward?</h2>
+      <p>Let's schedule a 30-minute call to walk through the demo and confirm scope.</p>
+      <a class="btn" href="mailto:hello@kennyk.online">Schedule a Call</a>
+      <a class="btn outline" href="https://www.kennyk.online">View Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">© 2026 Kenny Khalid · Prepared for Extra Mile Auto Parts · This document is a project proposal and not a contractual offer.</div>
+</footer>
+
+</body>
+</html>
